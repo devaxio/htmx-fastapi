@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Band Members</title>
+</head>
+<body>
+    <h2>Coldplay Members</h2>
+    <ul>
+        {% for member in members %}
+            <li>
+                {{ member.name }} :
+                <ul>
+                    {% for instrument in member.instruments %}
+                        <li>{{ instrument }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do list</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+    <script src="{{ url_for('static', path='/hyperscript.min.js') }}"></script>
+    <script src="{{ url_for('static', path='/htmx.min.js') }}"></script>
+</head>
+<body>
+    <div class="header">
+        Todo List
+    </div>
+    <div id="tabs" class="navigation" hx-target="#tab-contents" hx-swap="outerHTML" role="tablist" _="on htmx:afterOnLoad set @aria-selected of <[aria-selected=true]/> to false tell the target take .selected set @aria-selected to true">
+        <button role="tab" aria-controls="tab-content" aria-selected="true" hx-get="/tasks/personal" class="selected">Personal</button>
+        <button role="tab" aria-controls="tab-content" aria-selected="false" hx-get="/tasks/work">Work</button>
+        <button role="tab" aria-controls="tab-content" aria-selected="false" hx-get="/tasks/shopping">Shopping</button>
+    </div>
+    <div id="tab-contents" role="tabpanel" hx-get="/tasks/personal" hx-trigger="load" hx-swap="outerHTML"></div>
+</body>
+</html>

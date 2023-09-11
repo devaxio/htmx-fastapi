@@ -1,0 +1,29 @@
+<div id="tab-contents" role="tabpanel">
+    <div class="form">
+        <label for="input-task">Create a new {{ category }} task</label>
+        <div class="input-task-container">
+            <input type="text" name="name" id="input-task" class="input-task" placeholder="input your {{ category }} task here ..." hx-post="/tasks/{{ category }}" hx-target="#tab-contents" hx-swap="outerHTML"/>
+            <button class="check-mark">✓</button>
+        </div>
+    </div>
+    {% if tasks %}
+        <div class="table">
+            <h2>{{ category.capitalize() }} Tasks</h2>
+            <table>
+                <tr>
+                    <th>Task</th>
+                    <th width="10%">Delete</th>
+                </tr>
+                {% for task in tasks %}
+                    <tr task="{{ category }}/{{ task.id }}" {% if task.status %} class="done" {% endif %}>
+                        <td hx-put="/tasks/{{ category }}/{{ task.id }}" hx-target="closest tr" hx-swap="outerHTML" hx-trigger="dblclick">{{ task.name }}</td>
+                        <td hx-get="/tasks/{{ category }}/confirm-delete/{{ task.id }}" hx-target="body" hx-swap="beforeend">✕</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <p>Double-click to invert the state of the task</p>
+        </div>
+    {% else %}
+        <div id="no-added-tasks">No Tasks in {{ category.capitalize() }}</div>
+    {% endif %}
+</div>

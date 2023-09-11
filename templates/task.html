@@ -1,0 +1,4 @@
+<tr task="{{ category }}/{{ task.id }}" {% if task.status %} class="done" {% endif %}>
+    <td hx-put="/tasks/{{ category }}/{{ task.id }}" hx-target="closest tr" hx-swap="outerHTML" hx-trigger="dblclick">{{ task.name }}</td>
+    <td hx-get="/tasks/{{ category }}/confirm-delete/{{ task.id }}" hx-target="body" hx-swap="beforeend">✕</td>
+</tr>

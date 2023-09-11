@@ -1,0 +1,15 @@
+<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
+	<div class="modal-underlay" _="on click trigger closeModal"></div>
+	<div class="modal-content">
+		<h2>Confirm Deletion of Task</h2>
+    <div>Are you sure you want to delete "{{ task.name }}"?</div>
+		<div id="actions">
+      <button 
+	  		id="confirm-btn"
+	  		hx-delete="/tasks/{{ category }}/{{ task.id }}"
+			_="on click trigger closeModal"
+			hx-target="{% if tasks|length == 1 %}#tab-contents{% else %}tr[task='{{ category }}/{{ task.id }}']{% endif %}">Yes</button>
+      <button id="cancel-btn" _="on click trigger closeModal">Close</button>
+    </div>
+	</div>
+</div>

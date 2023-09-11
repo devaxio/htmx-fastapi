@@ -1,0 +1,292 @@
+*{
+    margin:0;
+    padding:0;
+    user-select: none;
+}
+body{
+    overflow-x: hidden !important;
+    overflow-y: auto;
+    background-color:rgb(160, 189, 243)
+}
+.header{    
+    display:flex;
+    justify-content:center;
+    align-content: center;
+    padding:2rem;
+    font-size: 2.5rem;
+    background-color: #314757;
+    color:#c8d6c4;
+}
+.navigation{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 2px solid rgba(49, 71, 87, .75);
+}
+.navigation button{
+    border:none;
+    outline:none;
+    padding:1rem 0;
+    font-size:1.5rem;
+    cursor: pointer;
+    background-color:rgb(195, 209, 235);
+    color:#314757;
+    transition: all 0.3s ease-in-out;;
+}
+.navigation button:hover,
+.navigation button:active,
+.navigation button:focus{
+    background-color: rgba(49, 71, 87, .75) !important;
+    color:#c8d6c4 !important;
+}
+.selected{
+    background-color: rgba(49, 71, 87, .75) !important;
+    color:#c8d6c4 !important;
+}
+
+.form{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:2rem;
+    font-size:1.5rem;
+    gap:.5rem;
+    color:#2c3f4c;
+}
+.input-task{
+    font-size:1.5rem;
+    border-radius: 1rem;
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+    border: none;
+    padding: .3em;
+    outline:none;
+    background-color:white;
+    color:#2c3f4c;
+}
+.input-task::placeholder{
+    opacity:0.5;
+    font-size:1rem;
+}
+.input-task-container{
+    height:min-content;
+    display: flex;
+    border-radius: 1rem;
+}
+.input-task-container:has(.input-task:active,.input-task:focus){
+    outline: 3px solid rgba(49, 71, 87, .25);
+}
+.check-mark{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    font-size: 1.3rem;
+    padding: 0.6rem;
+    border:none;
+    cursor: pointer;
+    border-left: 1px solid rgba(49, 71, 87, .75);
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background-color:white;
+    color:#198754;
+}
+.table{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    width:100%;
+    flex-direction: column;
+    gap: 1em;
+}
+.table h2{
+    background-color:rgba(49, 71, 87, .75);
+    color:#c8d6c4;
+    border-radius:0.4em;
+    padding:0.3em
+}
+table{
+    width: 80%;
+    font-size: 1.2rem;
+    color:rgb(44, 63, 76);
+    border:0;
+    border-collapse: collapse;
+    background-color:aliceblue;
+    margin:0;
+    padding: 0;
+}
+table td{
+    padding:0.25em .5em;
+    border:0;
+    margin:0;
+}
+table th{
+    text-align: left;
+    padding:.5em;
+    margin:0;
+    border:0;
+    background-color:rgb(168, 192, 213)
+}
+.done{
+    background-color:#0D492D;
+    color:white;
+}
+
+table td:nth-child(2){
+    text-align: center;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+table td:nth-child(2):hover,
+table td:nth-child(2):focus{
+    color:white;
+    background-color:#821722;
+}
+.table p{
+    font-size:0.9rem;
+    color:rgb(66, 116, 118)
+}
+.table p::before{
+    content: "➜";
+    margin-right:0.3em;
+    font-size:0.9rem;
+}
+#no-added-tasks{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color:#2c3f4c;
+}
+
+/* Confirm Modal */
+#modal {
+	/* Underlay covers entire screen. */
+	position: fixed;
+	top:0px;
+	bottom: 0px;
+	left:0px;
+	right:0px;
+	background-color:rgba(0,0,0,0.75);
+	z-index:1000;
+
+	/* Flexbox centers the .modal-content vertically and horizontally */
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+
+	/* Animate when opening */
+    animation: fadeIn 150ms ease;
+}
+
+#modal > .modal-underlay {
+	/* underlay takes up the entire viewport. This is only
+	required if you want to click to dismiss the popup */
+	position: absolute;
+	z-index: -1;
+	top:0px;
+	bottom:0px;
+	left: 0px;
+	right: 0px;
+}
+
+#modal > .modal-content {
+	/* Position visible dialog near the top of the window */
+	margin-top:15vh;
+
+	/* Sizing for visible dialog */
+	width:80%;
+	max-width:600px;
+
+	/* Display properties for visible dialog*/
+	border:3px solid rgba(49, 71, 87, .25);;
+	border-radius:1rem;
+	box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
+	background-color:rgb(195, 209, 235);
+    color:#2c3f4c;
+    display: flex;
+    flex-direction: column !important;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+	padding:20px;
+
+	/* Animate when opening */
+	animation:zoomIn 150ms ease;
+}
+
+#actions{
+    display:flex;
+    gap:3rem;
+    flex-direction: row-reverse;
+}
+
+#actions>button{
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+    color:inherit;
+    background-color:inherit;
+    cursor:pointer;
+    border-radius:0.35em;
+    font-size:1.2rem;
+    border: none;
+    outline:0;
+    padding: 0.5em;
+    width: 4rem;
+    transition: all 250ms ease-in-out;
+}
+
+#actions>#confirm-btn{
+    color:aliceblue;
+    background-color:#DC3545;
+}
+#actions>#confirm-btn:hover,
+#actions>#confirm-btn:focus,
+#actions>#confirm-btn:active{
+    outline:3px solid rgba(220, 53, 69, 0.5) !important;
+    transition: all 250ms ease-in-out;
+}
+
+#actions>#cancel-btn{
+    color:aliceblue;
+    background-color:#198754;
+}
+#actions>#cancel-btn:hover,
+#actions>#cancel-btn:focus,
+#actions>#cancel-btn:active{
+    outline:3px solid rgba(25, 135, 84, 0.5);
+    transition: all 250ms ease-in-out;
+}
+
+#modal.closing {
+	/* Animate when closing */
+	animation: fadeOut 150ms ease;
+}
+
+#modal.closing > .modal-content {
+	/* Animate when closing */
+	animation: zoomOut 150ms ease;
+}
+
+@keyframes fadeIn {
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+} 
+
+@keyframes fadeOut {
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+} 
+
+@keyframes zoomIn {
+	0% {transform: scale(0.9);}
+	100% {transform: scale(1);}
+} 
+
+@keyframes zoomOut {
+	0% {transform: scale(1);}
+	100% {transform: scale(0.9);}
+} 
